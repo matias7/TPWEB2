@@ -60,42 +60,43 @@ class ProductosController extends SecuredController
         $id_producto = $param[0];
         $Producto = $this->model->GetProducto($id_producto);
         $Categorias = $this->modelv->GetCategorias();
-        $this->view->ViewEditProductos("Editar Producto", $Producto, $Categorias);
+        $this->view->ViewEditProducto("Editar Producto", $Producto, $Categorias);
       }
-  function GuardarEditarProducto(){
-    $id_producto = $_POST["idForm"];
-    $nombre = $_POST["nombreForm"];
-    $precio = $_POST["precioForm"];
-    $unidades = $_POST["unidadesForm"];
-    $categorias = $_POST["nombreCategoria"];
-    $this->model->GuardarProductoEditado($nombre, $precio, $unidades, $categorias, $id_producto);
-    header(ADMIN);
-  }
-  function BorrarProducto($param){
-    $this->model->BorrarProducto($param[0]);
-    header(ADMIN);
-  }
-  function BorrarCategoria($param){
-    $this->modelv->BorrarCategoria($param[0]);
-    header(ADMIN);
-  }
-  function ViewEditProductos($param){
-      $id_Producto = $param[0];
-      $Producto = $this->model->GetProductos($id_Producto);
-      $this->view->ViewEditProductos("Editar Producto", $Producto);
-  }
-
-  function filtrarProductos(){
-    $Categ = $_POST["nombreCategoria"];
-    $Categorias = $this->modelv->GetCategorias();
-    if($Categ == "todos"){
-    $Producto =  $this->model->GetProductos();
+    function guardarEditarProducto(){
+      $id_producto = $_POST["idEditado"];
+      $nombre = $_POST["NombreNuevo"];
+      $precio = $_POST["PrecioNuevo"];
+      $unidades = $_POST["UnidadesNuevo"];
+      $categorias = $_POST["nombreCategoriaNuevo"];
+      $this->model->GuardarProductoEditado($nombre, $precio, $unidades, $categorias, $id_producto);
+      header(ADMIN);
     }
-    else{
-    $Producto = $this->model->getFiltrarProductos($Categ);
+    function BorrarProducto($param){
+      $this->model->BorrarProducto($param[0]);
+      header(ADMIN);
     }
-    $this ->view->View("", $this->Titulo, $Categorias, $Producto);
+    function BorrarCategoria($param){
+      $this->modelv->BorrarCategoria($param[0]);
+      header(ADMIN);
+    }
+    function ViewEditProductos($param){
+        $id_Producto = $param[0];
+        $Producto = $this->model->GetProductos($id_Producto);
+        $this->view->ViewEditProductos("Editar Producto", $Producto);
+        header(ADMIN);
+    }
 
-  }
+    function filtrarProductos(){
+      $Categ = $_POST["nombreCategoria"];
+      $Categorias = $this->modelv->GetCategorias();
+      if($Categ == "todos"){
+      $Producto =  $this->model->GetProductos();
+      }
+      else{
+      $Producto = $this->model->getFiltrarProductos($Categ);
+      }
+      $this ->view->View("", $this->Titulo, $Categorias, $Producto);
+      header(ADMIN);
+    }
 }
 ?>

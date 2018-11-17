@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-11-2018 a las 00:19:29
+-- Tiempo de generación: 04-11-2018 a las 04:04:53
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -38,10 +38,9 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`) VALUES
-(20, 'Cafeteria'),
-(30, 'Comida'),
-(32, 'Gaseosaeffds'),
-(18, 'Gaseosas');
+(38, 'Cafeteria'),
+(37, 'Comida'),
+(39, 'Gaseosa');
 
 -- --------------------------------------------------------
 
@@ -62,12 +61,9 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id_producto`, `Nombre`, `Precio`, `Unidades`, `nombre_categoria`) VALUES
-(19, 'cocacola', 50, 2, 'Gaseosas'),
-(20, 'Medialuna', 5, 4, 'Cafeteria'),
-(21, 'ravioles', 200, 1, 'Cafeteria'),
-(22, 'cafes', 32, 2, 'Cafeteria'),
-(23, 'Milanesa Con Pu', 150, 1, 'Comida'),
-(24, 'cafes', 43, 2, 'Gaseosaeffds');
+(28, 'CafeConCrema', 32, 2, 'Cafeteria'),
+(29, 'CocaCola', 26, 1, 'Gaseosa'),
+(30, 'Canelones', 120, 1, 'Comida');
 
 -- --------------------------------------------------------
 
@@ -120,13 +116,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_categoria` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_producto` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

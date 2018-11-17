@@ -33,12 +33,17 @@ class ProductoModel
 
     $sentencia = $this->db->prepare("INSERT INTO productos(Nombre, Precio, Unidades, nombre_categoria) VALUES(?,?,?,?)");
     $sentencia->execute(array($producto,$precio,$unidades,$categoria));
+    $LastId = $this->db->lastInsertId();
+    return $this->GetProducto($LastId);
   }
 
   function BorrarProducto($id_producto){
-
-    $sentencia = $this->db->prepare( "delete from productos where id_producto=?");
-    $sentencia->execute(array($id_producto));
+    $Producto = $this->GetProducto($id_producto);
+    if(isset($Producto)){
+      $sentencia = $this->db->prepare( "delete from productos where id_producto=?");
+      $sentencia->execute(array($id_producto));
+      return $Producto;
+    }
   }
 
   function GuardarProductoEditado($nombre,$precio,$unidades,$nombre_categoria,$id_producto){

@@ -1,12 +1,12 @@
 {include file="header.tpl"}
-{include file="NavBar.tpl"}
-    <h1>{$Titulo}</h1>
+{include file="NavBarLogin.tpl"}
+    <h3>{$Titulo}</h3>
     <form method="post" action="verificarLogin">
       <div class="modal-body">
-             <div class="form-group">
+            <div class="form-group">
               <label for="exampleInputEmail1">Usuario</label>
               <input type="input" class="form-control" name="usuarioId" id="usuarioId" aria-describedby="usuarioId" placeholder="Usuario">
-              </div>
+            </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
               <input type="password" class="form-control" name="passwordId" id="passwordId" placeholder="Contraseña">
@@ -15,7 +15,8 @@
         {$Message}
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
+      </div>
     </form>
-    </div>
+
 
 {include file="footer.tpl"}

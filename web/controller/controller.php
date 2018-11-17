@@ -1,5 +1,4 @@
 <?php
-  require_once "./view/home_view.php";
   require_once "./view/ProductosView.php";
   require_once "./model/ProductoModel.php";
   require_once "./model/CategoriasModel.php";
@@ -12,7 +11,6 @@
     private $Titulo;
 
     function __construct(){
-      $this->vista = new HomeView();
       $this->model = new ProductoModel();
       $this->modelv = new CategoriasModel();
       $this->view = new ProductosView();
@@ -22,7 +20,7 @@
       $Categorias = $this->modelv->GetCategorias();
       $Productos = $this->model->GetProductos();
       $this ->view->PublicView($this->Titulo, $Categorias, $Productos);
-    
+
     }
   }
 ?>

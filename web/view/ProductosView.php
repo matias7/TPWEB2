@@ -23,9 +23,9 @@ class ProductosView
       $this->smarty->assign('Productos',$Productos);
       $this->smarty->display('templates/homePublico.tpl');
     }
-    function ViewEditProductos($Titulo, $Producto, $Categorias){
+    function ViewEditProducto($Titulo, $Producto, $Categorias){
       $this->smarty->assign('Titulo',$Titulo);
-      $this->smarty->assign('Productos',$Producto);
+      $this->smarty->assign('producto',$Producto);
       $this->smarty->assign('Categorias',$Categorias);
       $this->smarty->assign('home',"http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
       $this->smarty->display('templates/MostrarEditarProducto.tpl');

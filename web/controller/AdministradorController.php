@@ -17,16 +17,15 @@ class AdministradorController extends SecuredController
     $this->Titulo = "Lista de Administradores";
   }
 
-  function MostrarAdministrador(){
-      $Usuarios = $this->model->GetAdministrador();
-      $this->view->View($this->Titulo, $Usuarios);
+  function CrearUsuario(){
+      $this->view->ViewCrearUsuario();
   }
 
-  function InsertAdministrador(){
-    $nombre = $_POST["nombre_usuario"];
-    $pass = $_POST["contraseña_usuario"];
-    $this->model->InsertarAdministrador($nombre,$pass);
-    header(ADMIN);
+  function InsertarUsuario(){
+    $Usuario = $_POST["inputUsuario"];
+    $Contraseña = $_POST["inputContraseña"];
+    $hash = password_hash($Contraseña, PASSWORD_DEFAULT);
+    $this->model->InsertarAdministrador($Usuario,$hash);
   }
 
 }

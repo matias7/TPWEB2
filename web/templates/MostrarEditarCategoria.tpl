@@ -2,7 +2,7 @@
 {include file="NavBarLogeado.tpl"}
     <h1>{$Titulo}</h1>
     <div class="container">
-      <h2>Formulario</h2>
+      <h2>Editar Categoria</h2>
         <form method="post" action="{$home}/guardarEditar">
           <input type="hidden" class="form-control" id="idForm" name="idForm" value="{$Categorias["id_categoria"]}">
           <div class="form-group">

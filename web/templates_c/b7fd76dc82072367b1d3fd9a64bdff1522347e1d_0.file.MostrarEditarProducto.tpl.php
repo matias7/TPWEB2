@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2018-11-02 23:52:40
+/* Smarty version 3.1.33, created on 2018-11-07 18:00:57
   from 'C:\xampp\htdocs\web\templates\MostrarEditarProducto.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5bdcd538211f85_97763455',
+  'unifunc' => 'content_5be31a49705554_72293414',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b7fd76dc82072367b1d3fd9a64bdff1522347e1d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web\\templates\\MostrarEditarProducto.tpl',
-      1 => 1541199158,
+      1 => 1541610042,
       2 => 'file',
     ),
   ),
@@ -23,36 +23,36 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5bdcd538211f85_97763455 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5be31a49705554_72293414 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender("file:NavBarLogeado.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
     <h1><?php echo $_smarty_tpl->tpl_vars['Titulo']->value;?>
 </h1>
     <div class="container">
-      <h2>Formulario</h2>
+      <h2>Editar Producto</h2>
         <form method="post" action="<?php echo $_smarty_tpl->tpl_vars['home']->value;?>
-/GuardarEditarProducto">
-          <input type="hidden" class="form-control" id="idForm" name="idForm" value="<?php echo $_smarty_tpl->tpl_vars['producto']->value["id_producto"];?>
+/guardarEditarProducto">
+          <input type="hidden" class="form-control" id="idEditado" name="idEditado" value="<?php echo $_smarty_tpl->tpl_vars['producto']->value["id_producto"];?>
 ">
           <div class="form-group">
-            <label for="nombreForm"></label>
-            <input type="text" class="form-control"  name="nombreForm" placeholder="Nombre" value="<?php echo $_smarty_tpl->tpl_vars['producto']->value["Nombre"];?>
-">
-          </div>
-        <div class="form-group">
-            <label for="precioForm"></label>
-            <input type="number" class="form-control"  name="precioForm" placeholder="Precio" value="<?php echo $_smarty_tpl->tpl_vars['producto']->value["Precio"];?>
+            <label for="NombreNuevo"></label>
+            <input type="text" class="form-control" name="NombreNuevo" placeholder="Nombre" value="<?php echo $_smarty_tpl->tpl_vars['producto']->value["Nombre"];?>
 ">
           </div>
           <div class="form-group">
-            <label for="unidadesForm"></label>
-            <input type="number" class="form-control"  name="unidadesForm" placeholder="Unidades" value="<?php echo $_smarty_tpl->tpl_vars['producto']->value["Unidades"];?>
+            <label for="PrecioNuevo"></label>
+            <input type="number" class="form-control"  name="PrecioNuevo" placeholder="Precio" value="<?php echo $_smarty_tpl->tpl_vars['producto']->value["Precio"];?>
 ">
           </div>
           <div class="form-group">
-            <select class="custom-select" name="nombreCategoria">
-              <option selected value="todas">Categorias</option>
+            <label for="UnidadesNuevo"></label>
+            <input type="number" class="form-control"  name="UnidadesNuevo" placeholder="Unidades" value="<?php echo $_smarty_tpl->tpl_vars['producto']->value["Unidades"];?>
+">
+          </div>
+          <div class="form-group">
+            <select class="custom-select" name="nombreCategoriaNuevo">
+              <option selected value="todos">Categorias</option>
                 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['Categorias']->value, 'categoria');
 if ($_from !== null) {
