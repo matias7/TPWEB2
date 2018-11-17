@@ -24,8 +24,10 @@ class AdministradorController extends SecuredController
   function InsertarUsuario(){
     $Usuario = $_POST["inputUsuario"];
     $Contraseña = $_POST["inputContraseña"];
+    $Tipo = "base";
     $hash = password_hash($Contraseña, PASSWORD_DEFAULT);
-    $this->model->InsertarAdministrador($Usuario,$hash);
+    $this->model->InsertarAdministrador($Usuario,$hash,$Tipo);
+    $this->model->GetUser($Usuario);
   }
 
 }

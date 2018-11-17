@@ -7,7 +7,7 @@
     <h4>Categorias</h4>
     <ul class="list-group">
       {foreach from=$Categorias item=categoria}
-      <li class="list-group-item">{$categoria['nombre_categoria']}<a href="editar/{$categoria['id_categoria']}"><button  type="button"  class="btn btn-warning">Editar</button></a><a href="borrar/{$categoria['id_categoria']}"><button type="button" class="btn btn-danger">Borrar</button></a></li>
+      <li class="list-group-item">{$categoria['nombre_categoria']}<a href="editar/{$categoria['id_categoria']}"><button  type="button"  class="btn btn-warning">Editar</button></a><button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-danger">Borrar</button></li>
       {/foreach}
     </ul>
     <h4>Productos Disponibles</h4>
@@ -33,6 +33,25 @@
     </form>
   </div>
 
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Seguro que desea eliminar la categoria</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Al eliminar esta categoria se borraran todos los productos relacionados con dicha categoria
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <a href="borrar/{$categoria['id_categoria']}"><button type="button" class="btn btn-danger">Eliminar</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="container">
     <h4>Nueva Categoria</h4>

@@ -14,20 +14,19 @@ class AdministradorModel
     , 'root', '');
   }
 
-  function GetAdministradores(){ // no lo uso
+  function GetAdministradores($tipo){
 
-      $sentencia = $this->db->prepare( "select * from usuarios");
-      $sentencia->execute();
+      $sentencia = $this->db->prepare( "select * from usuarios where tipo_usuario=?");
+      $sentencia->execute(array($tipo));
       return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  function InsertarAdministrador($usuario, $contraseña){
-    $sentencia = $this->db->prepare("INSERT INTO usuarios(nombre_usuario, contraseña_usuario) VALUES(?,?)");
-    $sentencia->execute(array($usuario, $contraseña));
+  function InsertarAdministrador($usuario, $contraseña,$Tipo){
+    $sentencia = $this->db->prepare("INSERT INTO usuarios(nombre_usuario, contraseña_usuario, tipo_usuario) VALUES(?,?,?)");
+    $sentencia->execute(array($usuario, $contraseña,$Tipo));
   }
 
-  function GetUser($user){ // no lo uso
-
+  function GetUser($user){
       $sentencia = $this->db->prepare( "select * from usuarios where nombre_usuario=? limit 1");
       $sentencia->execute(array($user));
       return $sentencia->fetchAll(PDO::FETCH_ASSOC);

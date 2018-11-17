@@ -44,5 +44,6 @@ class CategoriasModel
   $sentencia = $this->db->prepare( "update categorias set nombre_categoria = ? where id_categoria=?");
   $sentencia->execute(array($titulo, $id_categoria));
   }
+
 }
  ?>

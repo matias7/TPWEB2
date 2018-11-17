@@ -44,6 +44,7 @@ class ProductosView
       $this->smarty->assign('Message',$message);
       $this->smarty->display('templates/home.tpl');
     }
+  
 
 }
 
