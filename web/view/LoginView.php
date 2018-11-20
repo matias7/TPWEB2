@@ -14,7 +14,7 @@ class LoginView
 
     $this->Smarty->assign('Titulo',"Inicie sesión");
     $this->Smarty->assign('Message',$message);
-    $this->Smarty->display('templates/login.tpl');
+    $this->Smarty->display('templates/Login.tpl');
   }
 }
 

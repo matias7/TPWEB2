@@ -2,6 +2,7 @@
 define('HOME', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
 define('USER', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/CrearCuenta');
 define('ADMIN', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/admin');
+define('BASE', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/base');
 define('LOGIN', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/login');
 define('LOGOUT', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/logout');
 class ConfigApp{
@@ -10,7 +11,7 @@ class ConfigApp{
   public static $ACTIONS = [
     'home' => 'controller#iniciar',
     ''=> 'controller#iniciar',
-        'admin'=> 'ProductosController#Home',
+        'admin'=> 'ProductosController#HomeAdmin',
         'agregar'=> 'ProductosController#InsertCategoria',
         'editar' => 'ProductosController#EditarCategoria',
         'guardarEditar'=> 'ProductosController#guardarEditarCategoria',
@@ -24,9 +25,13 @@ class ConfigApp{
         'login'=> 'LoginController#login',
         'logout'=> 'LoginController#logout',
         'verificarLogin' => 'LoginController#verificarLogin',
-        'CrearCuenta'=> 'AdministradorController#CrearUsuario',
-        'user'=>'AdministradorController#CrearUsuario',
-        'guardarUsuario'=>'AdministradorController#InsertarUsuario'
+        'CrearCuenta'=> 'controller#CrearCuenta',
+        'guardarUsuario'=>'controller#InsertarUsuario',
+        'base'=>'ProductosController#HomeBase',
+        'editarUsuario'=>'AdministradorController#EditarUsuario',
+        'borrarUsuario'=>'AdministradorController#BorrarUsuario',
+        'agregarImagen'=>'ProductosController#InsertarImagen'
+
   ];
 };
 

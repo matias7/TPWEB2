@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2018-11-07 23:57:38
+/* Smarty version 3.1.33, created on 2018-11-19 17:21:04
   from 'C:\xampp\htdocs\web\templates\CrearUsuario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5be36de224f9f4_38620990',
+  'unifunc' => 'content_5bf2e2f0caa6f3_70465683',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ec524629fbdaf1fffee40f4e5546dc63ad7cf123' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web\\templates\\CrearUsuario.tpl',
-      1 => 1541613875,
+      1 => 1542644426,
       2 => 'file',
     ),
   ),
@@ -23,23 +23,27 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5be36de224f9f4_38620990 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5bf2e2f0caa6f3_70465683 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender("file:NavBar.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <div class="container">
   <form method="post" action="guardarUsuario">
     <h2>Crear Cuenta</h2>
+        <div class="">
+          <?php echo $_smarty_tpl->tpl_vars['Message']->value;?>
+
+        </div>
       <div class="form-group row">
         <label for="inputUsuario" class="col-sm-2 col-form-label">Ingresar Usuario</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="inputUsuario" placeholder="Usuario">
+          <input type="text" class="form-control" name="usuarioId" placeholder="Usuario">
         </div>
       </div>
       <div class="form-group row">
         <label for="inputContraseña" class="col-sm-2 col-form-label">Ingresar Contraseña</label>
         <div class="col-sm-10">
-          <input type="number" class="form-control" name="inputContraseña" placeholder="Password">
+          <input type="number" class="form-control" name="passwordId" placeholder="Password">
         </div>
       </div>
       <fieldset class="form-group">

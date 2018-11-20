@@ -3,16 +3,19 @@
 <div class="container">
   <form method="post" action="guardarUsuario">
     <h2>Crear Cuenta</h2>
+        <div class="">
+          {$Message}
+        </div>
       <div class="form-group row">
         <label for="inputUsuario" class="col-sm-2 col-form-label">Ingresar Usuario</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="inputUsuario" placeholder="Usuario">
+          <input type="text" class="form-control" name="usuarioId" placeholder="Usuario">
         </div>
       </div>
       <div class="form-group row">
         <label for="inputContraseña" class="col-sm-2 col-form-label">Ingresar Contraseña</label>
         <div class="col-sm-10">
-          <input type="number" class="form-control" name="inputContraseña" placeholder="Password">
+          <input type="number" class="form-control" name="passwordId" placeholder="Password">
         </div>
       </div>
       <fieldset class="form-group">

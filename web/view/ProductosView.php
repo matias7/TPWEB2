@@ -9,19 +9,18 @@ class ProductosView
     function __construct(){
       $this->smarty = new Smarty();
     }
-
-    function View($message = '', $Titulo, $Categorias, $Productos){
-      $this->smarty->assign('Message',$message);
-      $this->smarty->assign('Titulo',$Titulo);
-      $this->smarty->assign('Categorias',$Categorias);
-      $this->smarty->assign('Productos',$Productos);
-      $this->smarty->display('templates/home.tpl');
-    }
     function PublicView($Titulo,  $Categorias, $Productos){
       $this->smarty->assign('Titulo',$Titulo);
       $this->smarty->assign('Categorias',$Categorias);
       $this->smarty->assign('Productos',$Productos);
-      $this->smarty->display('templates/homePublico.tpl');
+      $this->smarty->display('templates/HomePublico.tpl');
+    }
+    function ViewBase($message = '', $Titulo, $Categorias, $Productos){
+      $this->smarty->assign('Message',$message);
+      $this->smarty->assign('Titulo',$Titulo);
+      $this->smarty->assign('Categorias',$Categorias);
+      $this->smarty->assign('Productos',$Productos);
+      $this->smarty->display('templates/HomeBase.tpl');
     }
     function ViewEditProducto($Titulo, $Producto, $Categorias){
       $this->smarty->assign('Titulo',$Titulo);
@@ -36,16 +35,13 @@ class ProductosView
       $this->smarty->assign('home',"http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
       $this->smarty->display('templates/MostrarEditarCategoria.tpl');
     }
-
     function ViewFilterProductos($message = '', $Titulo, $Categorias, $Productos){
       $this->smarty->assign('Titulo',$Titulo);
       $this->smarty->assign('Categorias',$Categorias);
       $this->smarty->assign('Productos',$Productos);
       $this->smarty->assign('Message',$message);
-      $this->smarty->display('templates/home.tpl');
+      $this->smarty->display('templates/homebase.tpl');
     }
-  
-
 }
 
 

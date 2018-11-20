@@ -30,6 +30,7 @@ class LoginController
   }
 
   function verificarLogin(){
+
       $user = $_POST["usuarioId"];
       $pass = $_POST["passwordId"];
       $dbUser = $this->model->GetUser($user);
@@ -38,9 +39,13 @@ class LoginController
               if (password_verify($pass, $dbUser[0]['contraseña_usuario'])){
                 session_start();
                 $_SESSION["User"] = $user;
-                header(ADMIN);
+                if($dbUser[0]['tipo_usuario'] === "Administrador"){
+                header(ADMIN);}
+                else{
+                  header(BASE);
+                }
                 }else{
-                $this->view->mostrarLogin("Contraseña incorrecta");
+                $this->view->mostrarLogin("Contraseña incorrecta ");
                 }
           }
       }else{

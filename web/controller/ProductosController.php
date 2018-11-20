@@ -1,6 +1,7 @@
 <?php
 
 require_once "./view/ProductosView.php";
+require_once "./view/AdministradorView.php";
 require_once "./model/ProductoModel.php";
 require_once "./model/CategoriasModel.php";
 require_once  "SecuredController.php";
@@ -18,14 +19,24 @@ class ProductosController extends SecuredController
 
     $this->model = new ProductoModel();
     $this->modelv = new CategoriasModel();
+    $this->modelAdmin = new AdministradorModel();
     $this->view = new ProductosView();
+    $this->viewAdmin = new AdministradorView();
     $this->Titulo = "Lista de Productos";
   }
 
-  function Home($message = ''){
+  function HomeBase($message = ''){
       $Categorias = $this->modelv->GetCategorias();
       $Productos = $this->model->GetProductos();
-      $this->view->View($message, $this->Titulo, $Categorias, $Productos);
+      $this->view->ViewBase($message, $this->Titulo, $Categorias, $Productos);
+  }
+  function HomeAdmin($message = ''){
+    $Categorias = $this->modelv->GetCategorias();
+    $Productos = $this->model->GetProductos();
+    $Usuarios = $this->modelAdmin->GetUsuarios();
+    $Imagenes = base64_decode($this->model->GetImagenes());
+    $Comentarios = $this->model->GetComentarios();
+    $this->viewAdmin->ViewAdmin($message, $this->Titulo, $Categorias, $Productos,$Imagenes,$Comentarios, $Usuarios);
   }
   function InsertCategoria(){
     $titulo = $_POST["nombreCategoria"];
@@ -55,6 +66,26 @@ class ProductosController extends SecuredController
       else{
       $this->Home("Complete todo por favor");
       }
+    }
+    function InsertarImagen(){
+      $imagen = $_POST["idImagen"];
+      $producto = $_POST["id_Producto"];
+      $data = base64_encode($_POST["idImagen"]);
+      $this->model->InsertarImagen($producto,$imagen);
+      header(ADMIN);
+    }
+    function BorrarImagen($param){
+      $this->model->BorrarImagen($param[0]);
+      header(ADMIN);
+    }
+    function BorrarComentario($param){
+      $this->model->BorrarComentario($param[0]);
+      header(ADMIN);
+    }
+    function InsertarComentario(){
+      $Comentario = $_POST["id_comentarios"];
+      $producto = $_POST["id_Producto"];
+      $this->model->InsertarImagen($producto,$Comentario);
     }
     function EditarProducto($param){
         $id_producto = $param[0];
@@ -95,7 +126,7 @@ class ProductosController extends SecuredController
       else{
       $Producto = $this->model->getFiltrarProductos($Categ);
       }
-      $this ->view->View("", $this->Titulo, $Categorias, $Producto);
+      $this ->view->ViewAdmin("", $this->Titulo, $Categorias, $Producto);
       header(ADMIN);
     }
 }

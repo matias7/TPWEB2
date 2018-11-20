@@ -1,5 +1,6 @@
 <?php
 require_once  "./view/AdministradorView.php";
+require_once  "./view/LoginView.php";
 require_once  "./model/AdministradorModel.php";
 
 class AdministradorController extends SecuredController
@@ -14,22 +15,23 @@ class AdministradorController extends SecuredController
 
     $this->view = new AdministradorView();
     $this->model = new AdministradorModel();
-    $this->Titulo = "Lista de Administradores";
+    $this->viewer = new LoginView();
+    $this->Titulo = "Lista de Usuarios";
   }
 
-  function CrearUsuario(){
-      $this->view->ViewCrearUsuario();
+  function EditarUsuario($param){
+    if ($param[1]=="Administrador"){
+      $tipo="base";
+    }else{
+      $tipo="Administrador";
+    }
+    $this->model->EditarUsuario($tipo,$param[0]);
+    header(ADMIN);
   }
-
-  function InsertarUsuario(){
-    $Usuario = $_POST["inputUsuario"];
-    $Contraseña = $_POST["inputContraseña"];
-    $Tipo = "base";
-    $hash = password_hash($Contraseña, PASSWORD_DEFAULT);
-    $this->model->InsertarAdministrador($Usuario,$hash,$Tipo);
-    $this->model->GetUser($Usuario);
+  function BorrarUsuario($param){
+    $this->model->BorrarUsuario($param[0]);
+    header(ADMIN);
   }
-
 }
 
- ?>
+?>
