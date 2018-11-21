@@ -1,5 +1,5 @@
 {include file="header.tpl"}
-{include file="NavBarLogeado.tpl"}
+{include file="NavBarLogeadoAdmin.tpl"}
 <div class="medio">
   <h1>{$Titulo}</h1>
   <div class="container">
@@ -13,17 +13,7 @@
     <ul class="list-group">
       {foreach from=$Productos item=producto}
       <li class="list-group-item"> Producto: {$producto['Nombre']} - Valor: $ {$producto['Precio']} - Cantidad: {$producto['Unidades']} - Tipo: {$producto['nombre_categoria']}<a href="editarProducto/{$producto['id_producto']}"> <button  type="button"  class="btn btn-warning">Editar</button></a> <a href="borrarProducto/{$producto['id_producto']}"><button type="button" class="btn btn-danger">Borrar</button></a></li>
-        Comentarios: {$producto['comentario']}
-        Imagenes: {$producto['imagen']}
-        <li class="list-group-item">
-          <form method="post" action="agregarImagen" >
-            <div class="form-group">
-              <label for="idImagen">Insertar Imagen</label>
-              <input type="file" class="form-control-file" name="idImagen" >
-              <input type="submit" name="subir" value="Subir Imagen"/>
-            </div>
-          </form>
-        </li>
+      <a href="vermasAdmin/{$producto['id_producto']}"><button type="button" class="btn btn-light">Ver Mas</button></a>
       {/foreach}
     </ul>
   </div>
@@ -106,6 +96,5 @@
       {/foreach}
   </ul>
 </div>
-
 
 {include file="footer.tpl"}

@@ -1,5 +1,5 @@
 {include file="header.tpl"}
-{include file="NavBarLogeado.tpl"}
+{include file="NavBarLogeadoAdmin.tpl"}
     <h1>{$Titulo}</h1>
     <div class="container">
       <h2>Editar Categoria</h2>

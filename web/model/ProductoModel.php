@@ -36,9 +36,9 @@ class ProductoModel
     $LastId = $this->db->lastInsertId();
     return $this->GetProducto($LastId);
   }
-  function GetImagenes(){
-      $sentencia = $this->db->prepare( "select * from imagenes ");
-      $sentencia->execute(array());
+  function GetImagenes($id_producto){
+      $sentencia = $this->db->prepare( "select * from imagenes where id_producto=?");
+      $sentencia->execute(array($id_producto));
       return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
   function GetComentarios($id_producto){

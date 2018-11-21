@@ -1,31 +1,31 @@
 <?php
-/* Smarty version 3.1.33, created on 2018-11-19 17:45:42
+/* Smarty version 3.1.33, created on 2018-11-21 17:53:03
   from 'C:\xampp\htdocs\web\templates\HomeAdministrador.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5bf2e8b649da50_30189857',
+  'unifunc' => 'content_5bf58d6fb13c63_53817246',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1179462f5b6e21242fa54078490010a0d779252b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web\\templates\\HomeAdministrador.tpl',
-      1 => 1542645941,
+      1 => 1542819176,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:header.tpl' => 1,
-    'file:NavBarLogeado.tpl' => 1,
+    'file:NavBarLogeadoAdmin.tpl' => 1,
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5bf2e8b649da50_30189857 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5bf58d6fb13c63_53817246 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-$_smarty_tpl->_subTemplateRender("file:NavBarLogeado.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+$_smarty_tpl->_subTemplateRender("file:NavBarLogeadoAdmin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <div class="medio">
   <h1><?php echo $_smarty_tpl->tpl_vars['Titulo']->value;?>
@@ -60,15 +60,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['producto']->value) {
 <a href="editarProducto/<?php echo $_smarty_tpl->tpl_vars['producto']->value['id_producto'];?>
 "> <button  type="button"  class="btn btn-warning">Editar</button></a> <a href="borrarProducto/<?php echo $_smarty_tpl->tpl_vars['producto']->value['id_producto'];?>
 "><button type="button" class="btn btn-danger">Borrar</button></a></li>
-        <li class="list-group-item">
-          <form method="post" action="agregarImagen" >
-            <div class="form-group">
-              <label for="idImagen">Insertar Imagen</label>
-              <input type="file" class="form-control-file" name="idImagen" >
-              <input type="submit" name="subir" value="Subir Imagen"/>
-            </div>
-          </form>
-        </li>
+      <a href="vermasAdmin/<?php echo $_smarty_tpl->tpl_vars['producto']->value['id_producto'];?>
+"><button type="button" class="btn btn-light">Ver Mas</button></a>
       <?php
 }
 }
@@ -185,7 +178,6 @@ foreach ($_from as $_smarty_tpl->tpl_vars['usuario']->value) {
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
   </ul>
 </div>
-
 
 <?php $_smarty_tpl->_subTemplateRender("file:footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }

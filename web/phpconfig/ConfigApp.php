@@ -30,7 +30,9 @@ class ConfigApp{
         'base'=>'ProductosController#HomeBase',
         'editarUsuario'=>'AdministradorController#EditarUsuario',
         'borrarUsuario'=>'AdministradorController#BorrarUsuario',
-        'agregarImagen'=>'ProductosController#InsertarImagen'
+        'agregarImagen'=>'ProductosController#InsertarImagen',
+        'vermasAdmin'=>'AdministradorController#VerMasAdmin',
+        'vermas'=>'ProductosController#verMas'
 
   ];
 };

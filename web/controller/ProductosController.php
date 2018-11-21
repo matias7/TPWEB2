@@ -34,9 +34,7 @@ class ProductosController extends SecuredController
     $Categorias = $this->modelv->GetCategorias();
     $Productos = $this->model->GetProductos();
     $Usuarios = $this->modelAdmin->GetUsuarios();
-    $Imagenes = base64_decode($this->model->GetImagenes());
-    $Comentarios = $this->model->GetComentarios();
-    $this->viewAdmin->ViewAdmin($message, $this->Titulo, $Categorias, $Productos,$Imagenes,$Comentarios, $Usuarios);
+    $this->viewAdmin->ViewAdmin($message, $this->Titulo, $Categorias, $Productos, $Usuarios);
   }
   function InsertCategoria(){
     $titulo = $_POST["nombreCategoria"];
@@ -53,6 +51,14 @@ class ProductosController extends SecuredController
     $titulo = $_POST["NombreCategoria"];
     $this->modelv->guardarEditarCategoria($titulo, $id_categoria);
     header(ADMIN);
+  }
+  function VerMas(){
+    $Imagenes = ($this->model->GetImagenes());
+    foreach ($Imagenes as $imagen){
+      $aux[]=base64_decode($imagen{'contenido'});
+    }
+    $Comentarios = $this->model->GetComentarios();
+    $this->viewAdmin->ViewAdmin($aux,$Comentarios);
   }
   function InsertProducto(){
     $nombre = $_POST["NombreProducto"];
