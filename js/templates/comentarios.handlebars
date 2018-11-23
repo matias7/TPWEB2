@@ -1,0 +1,17 @@
+<h2>Comentarios: </h2>
+<div class="container">
+  <ul class="list-group">
+    {{#each comentarios}}
+      <li class="list-group-item">
+        <ul class="list-group">
+          <li class="list-group-item">
+            {{comentario}}
+          </li>
+          <li class="list-group-item">
+            {{valoracion}}
+          </li>
+       </ul>
+      </li>
+      {{/each}}
+   </ul>
+</div>
