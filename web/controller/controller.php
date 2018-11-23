@@ -17,9 +17,6 @@
       $this->model = new ProductoModel();
       $this->modelv = new CategoriasModel();
       $this->view = new ProductosView();
-      $this->viewGuest = new AdministradorView();
-      $this->modelGuest = new AdministradorModel();
-      $this->login = new LoginController();
       $this->Titulo = "Un Menu Para Cada Momento Del Dia";
     }
     public function iniciar(){
@@ -27,16 +24,18 @@
       $Productos = $this->model->GetProductos();
       $this ->view->PublicView($this->Titulo, $Categorias, $Productos);
     }
-    function CrearCuenta(){
-        $this->viewGuest->ViewCrearUsuario();
+
+    function filtroPublico(){
+    $Categ = $_POST["nombreCategoria"];
+    $Categorias = $this->modelv->GetCategorias();
+    if($Categ == "todos"){
+      $Producto =  $this->model->GetProductos();
     }
-    function InsertarUsuario(){
-        $Usuario = $_POST["usuarioId"];
-        $Contraseña = $_POST["passwordId"];
-        $Tipo = "base";
-        $hash = password_hash($Contraseña, PASSWORD_DEFAULT);
-        $this->modelGuest->InsertarUsuario($Usuario,$hash,$Tipo);
-        $this->login->verificarLogin();
+    else{
+      $Producto = $this->model->getFiltrarProductos($Categ);
     }
-  }
+    $this ->view->ViewBase("", $this->Titulo, $Categorias, $Producto);
+    }
+
+}
 ?>

@@ -13,13 +13,14 @@
     <h4>Productos Disponibles</h4>
     <ul class="list-group">
       {foreach from=$Productos item=producto}
-      <li class="list-group-item"> Producto: {$producto['Nombre']} - Valor: $ {$producto['Precio']} - Cantidad: {$producto['Unidades']} - Tipo: {$producto['nombre_categoria']}<a href="editarProducto/{$producto['id_producto']}"> <button  type="button"  class="btn btn-warning">Editar</button></a> <a href="borrarProducto/{$producto['id_producto']}"><button type="button" class="btn btn-danger">Borrar</button></a></li>
+      <li class="list-group-item"> Producto: {$producto['Nombre']} - Valor: $ {$producto['Precio']} - Cantidad: {$producto['Unidades']} - Tipo: {$producto['nombre_categoria']}<a href="editarProducto/{$producto['id_producto']}"> <button  type="button"  class="btn btn-warning">Editar</button></a> <a href="borrar/{$categoria['id_categoria']}"><button type="button" class="btn btn-danger">Eliminar</button></a></li>
+      <a href="vermasAdmin/{$producto['id_producto']}"><button type="button" class="btn btn-light">Ver Mas</button></a>
       {/foreach}
     </ul>
   </div>
 
   <div class="container filtro">
-    <form method="post" action="FiltrarProductos">
+    <form method="post" action="FiltrarPublico">
       <h5>Filtrar</h5>
       <div class="form-group">
         <select class="custom-select" name="nombreCategoria">
@@ -32,27 +33,7 @@
       <button type="submit" class="btn btn-primary">Filtrar Productos</button>
     </form>
   </div>
-
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Seguro que desea eliminar la categoria</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Al eliminar esta categoria se borraran todos los productos relacionados con dicha categoria
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <a href="borrar/{$categoria['id_categoria']}"><button type="button" class="btn btn-danger">Eliminar</button></a>
-        </div>
-      </div>
-    </div>
-  </div>
-
+{if $administrador==1}
   <div class="container">
     <h4>Nueva Categoria</h4>
     <form method="post" action="agregar">
@@ -63,7 +44,8 @@
       <button type="submit" class="btn btn-primary">Crear</button>
     </form>
   </div>
-
+{/if}
+{if $administrador==1}
   <div class="container">
     <h4>Ingresar Producto</h4>
     <form method="post" action="agregarProducto">
@@ -90,6 +72,6 @@
       <button type="submit" class="btn btn-primary">Crear producto</button>
     </form>
   </div>
-
+  {/if}
 </div>
 {include file="footer.tpl"}

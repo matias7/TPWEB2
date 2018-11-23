@@ -12,6 +12,7 @@ class ProductosController extends SecuredController
   private $model;
   private $modelv;
   private $Titulo;
+  private $controllerAdmin;
 
   function __construct()
   {
@@ -20,11 +21,16 @@ class ProductosController extends SecuredController
     $this->model = new ProductoModel();
     $this->modelv = new CategoriasModel();
     $this->modelAdmin = new AdministradorModel();
-    $this->view = new ProductosView();
-    $this->viewAdmin = new AdministradorView();
-    $this->Titulo = "Lista de Productos";
-  }
 
+    $this->Titulo = "Lista de Productos";
+    $usuario = $this->modelAdmin->GetUser($_SESSION["User"]);
+    $Admin = $usuario["tipo_usuario"];
+    $ActiveSession = isset($_SESSION["User"]);
+    $this->view = new ProductosView($ActiveSession, $Admin);
+    $this->viewAdmin = new AdministradorView($ActiveSession, $Admin);
+    $this->Titulo = "ProductosDisponibles";
+  }
+ //Todo lo relacionado a Home
   function HomeBase($message = ''){
       $Categorias = $this->modelv->GetCategorias();
       $Productos = $this->model->GetProductos();
@@ -36,6 +42,21 @@ class ProductosController extends SecuredController
     $Usuarios = $this->modelAdmin->GetUsuarios();
     $this->viewAdmin->ViewAdmin($message, $this->Titulo, $Categorias, $Productos, $Usuarios);
   }
+  function filtrarProductos(){
+    $Categ = $_POST["nombreCategoria"];
+    $Categorias = $this->modelv->GetCategorias();
+    if($Categ == "todos"){
+    $Producto =  $this->model->GetProductos();
+    }
+    else{
+    $Producto = $this->model->getFiltrarProductos($Categ);
+    }
+    $Usuarios = $this->modelAdmin->GetUsuarios();
+    $this->viewAdmin->ViewAdmin("", $this->Titulo, $Categorias, $Producto,$Usuarios);
+    header(ADMIN);
+    }
+
+  //Todo lo relacionado a categorias
   function InsertCategoria(){
     $titulo = $_POST["nombreCategoria"];
     $this->modelv->InsertarCategoria($titulo);
@@ -52,14 +73,11 @@ class ProductosController extends SecuredController
     $this->modelv->guardarEditarCategoria($titulo, $id_categoria);
     header(ADMIN);
   }
-  function VerMas(){
-    $Imagenes = ($this->model->GetImagenes());
-    foreach ($Imagenes as $imagen){
-      $aux[]=base64_decode($imagen{'contenido'});
-    }
-    $Comentarios = $this->model->GetComentarios();
-    $this->viewAdmin->ViewAdmin($aux,$Comentarios);
+  function BorrarCategoria($param){
+    $this->modelv->BorrarCategoria($param[0]);
+    header(ADMIN);
   }
+  //Todo lo relacionado a productos
   function InsertProducto(){
     $nombre = $_POST["NombreProducto"];
     $precio = $_POST["Precio"];
@@ -72,26 +90,6 @@ class ProductosController extends SecuredController
       else{
       $this->Home("Complete todo por favor");
       }
-    }
-    function InsertarImagen(){
-      $imagen = $_POST["idImagen"];
-      $producto = $_POST["id_Producto"];
-      $data = base64_encode($_POST["idImagen"]);
-      $this->model->InsertarImagen($producto,$imagen);
-      header(ADMIN);
-    }
-    function BorrarImagen($param){
-      $this->model->BorrarImagen($param[0]);
-      header(ADMIN);
-    }
-    function BorrarComentario($param){
-      $this->model->BorrarComentario($param[0]);
-      header(ADMIN);
-    }
-    function InsertarComentario(){
-      $Comentario = $_POST["id_comentarios"];
-      $producto = $_POST["id_Producto"];
-      $this->model->InsertarImagen($producto,$Comentario);
     }
     function EditarProducto($param){
         $id_producto = $param[0];
@@ -112,28 +110,31 @@ class ProductosController extends SecuredController
       $this->model->BorrarProducto($param[0]);
       header(ADMIN);
     }
-    function BorrarCategoria($param){
-      $this->modelv->BorrarCategoria($param[0]);
-      header(ADMIN);
-    }
-    function ViewEditProductos($param){
-        $id_Producto = $param[0];
-        $Producto = $this->model->GetProductos($id_Producto);
-        $this->view->ViewEditProductos("Editar Producto", $Producto);
-        header(ADMIN);
-    }
 
-    function filtrarProductos(){
-      $Categ = $_POST["nombreCategoria"];
-      $Categorias = $this->modelv->GetCategorias();
-      if($Categ == "todos"){
-      $Producto =  $this->model->GetProductos();
-      }
-      else{
-      $Producto = $this->model->getFiltrarProductos($Categ);
-      }
-      $this ->view->ViewAdmin("", $this->Titulo, $Categorias, $Producto);
-      header(ADMIN);
-    }
+    //Tdolo lo relacionado a imagenes
+  function InsertarImagen($params){
+      $imagenes = $_FILES['imagenes']['tmp_name'];
+      $id_producto = $params[0];
+      $this->model->AgregarImagenes($imagenes,$id_producto);
+      $this->VerMasAdmin($params);
+  }
+  function BorrarImagen($params){
+    $id_productoo = $params[1];
+    $imagen = $params[0];
+    $id_producto = array($id_productoo);
+    $this->model->BorrarImagen($imagen);
+    $this->VerMasAdmin($id_producto);
+  }
+  function VerMasAdmin($param){
+    $id_producto = $param[0];
+    $id = $_SESSION["Id"];
+    $producto = $this->model->GetProducto($id_producto);
+    $Imagen =  $this->model->GetImagen($id_producto);
+    $Comentarios = $this->model->GetComentarios($id_producto);
+    $this->viewAdmin->VerMasAdmin("Producto",$producto,$Imagen,$id,$Comentarios);
+  }
+
+
+
 }
 ?>

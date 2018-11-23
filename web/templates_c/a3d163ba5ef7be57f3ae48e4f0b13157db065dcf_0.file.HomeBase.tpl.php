@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2018-11-19 00:18:33
+/* Smarty version 3.1.33, created on 2018-11-23 13:30:12
   from 'C:\xampp\htdocs\web\templates\HomeBase.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5bf1f349d41ae4_87676498',
+  'unifunc' => 'content_5bf7f2d4281217_44035499',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a3d163ba5ef7be57f3ae48e4f0b13157db065dcf' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web\\templates\\HomeBase.tpl',
-      1 => 1542495423,
+      1 => 1542976205,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5bf1f349d41ae4_87676498 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5bf7f2d4281217_44035499 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender("file:NavBarLogeado.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -59,8 +59,10 @@ foreach ($_from as $_smarty_tpl->tpl_vars['producto']->value) {
  - Cantidad: <?php echo $_smarty_tpl->tpl_vars['producto']->value['Unidades'];?>
  - Tipo: <?php echo $_smarty_tpl->tpl_vars['producto']->value['nombre_categoria'];?>
 <a href="editarProducto/<?php echo $_smarty_tpl->tpl_vars['producto']->value['id_producto'];?>
-"> <button  type="button"  class="btn btn-warning">Editar</button></a> <a href="borrarProducto/<?php echo $_smarty_tpl->tpl_vars['producto']->value['id_producto'];?>
-"><button type="button" class="btn btn-danger">Borrar</button></a></li>
+"> <button  type="button"  class="btn btn-warning">Editar</button></a> <a href="borrar/<?php echo $_smarty_tpl->tpl_vars['categoria']->value['id_categoria'];?>
+"><button type="button" class="btn btn-danger">Eliminar</button></a></li>
+      <a href="vermasAdmin/<?php echo $_smarty_tpl->tpl_vars['producto']->value['id_producto'];?>
+"><button type="button" class="btn btn-light">Ver Mas</button></a>
       <?php
 }
 }
@@ -69,7 +71,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
   </div>
 
   <div class="container filtro">
-    <form method="post" action="FiltrarProductos">
+    <form method="post" action="FiltrarPublico">
       <h5>Filtrar</h5>
       <div class="form-group">
         <select class="custom-select" name="nombreCategoria">
@@ -91,28 +93,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
       <button type="submit" class="btn btn-primary">Filtrar Productos</button>
     </form>
   </div>
-
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Seguro que desea eliminar la categoria</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Al eliminar esta categoria se borraran todos los productos relacionados con dicha categoria
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <a href="borrar/<?php echo $_smarty_tpl->tpl_vars['categoria']->value['id_categoria'];?>
-"><button type="button" class="btn btn-danger">Eliminar</button></a>
-        </div>
-      </div>
-    </div>
-  </div>
-
+<?php if ($_smarty_tpl->tpl_vars['administrador']->value == 1) {?>
   <div class="container">
     <h4>Nueva Categoria</h4>
     <form method="post" action="agregar">
@@ -123,7 +104,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
       <button type="submit" class="btn btn-primary">Crear</button>
     </form>
   </div>
-
+<?php }
+if ($_smarty_tpl->tpl_vars['administrador']->value == 1) {?>
   <div class="container">
     <h4>Ingresar Producto</h4>
     <form method="post" action="agregarProducto">
@@ -159,7 +141,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
       <button type="submit" class="btn btn-primary">Crear producto</button>
     </form>
   </div>
-
+  <?php }?>
 </div>
 <?php $_smarty_tpl->_subTemplateRender("file:footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }

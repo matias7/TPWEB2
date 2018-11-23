@@ -6,8 +6,10 @@ class ProductosView
 
     private  $smarty;
 
-    function __construct(){
+    function __construct($ActiveSession = false,$Admin = 0){
       $this->smarty = new Smarty();
+      $this->smarty->assign('administrador', $Admin);
+      $this->smarty->assign('SesionActiva',$ActiveSession);
     }
     function PublicView($Titulo,  $Categorias, $Productos){
       $this->smarty->assign('Titulo',$Titulo);

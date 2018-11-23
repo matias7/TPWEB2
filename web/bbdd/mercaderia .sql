@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2018 a las 19:00:30
+-- Tiempo de generación: 23-11-2018 a las 15:45:16
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categorias` (
   `id_categoria` int(15) NOT NULL,
-  `nombre_categoria` varchar(15) NOT NULL
+  `nombre_categoria` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -38,7 +38,9 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`) VALUES
-(65, 'Cafeteria');
+(114, 'Cafeteria'),
+(113, 'Comidas'),
+(115, 'Gaseosa');
 
 -- --------------------------------------------------------
 
@@ -53,6 +55,16 @@ CREATE TABLE `comentarios` (
   `nombre_usuario` varchar(50) NOT NULL,
   `valoracion` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`id_comentario`, `id_producto`, `comentario`, `nombre_usuario`, `valoracion`) VALUES
+(1, 36, 'hola como estas esta andandoo', 'maxi', 3),
+(2, 36, 'de verdad??', 'maxi', 5),
+(3, 36, 'hola como estas esta andandoo', 'maxi', 3),
+(4, 36, 'de verdad??', 'maxi', 5);
 
 -- --------------------------------------------------------
 
@@ -77,10 +89,15 @@ CREATE TABLE `productos` (
   `Nombre` varchar(15) NOT NULL,
   `Precio` int(15) NOT NULL,
   `Unidades` int(15) NOT NULL,
-  `nombre_categoria` varchar(15) NOT NULL,
-  `comentario` text NOT NULL,
-  `imagen` text NOT NULL
+  `nombre_categoria` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id_producto`, `Nombre`, `Precio`, `Unidades`, `nombre_categoria`) VALUES
+(36, 'CocaCola', 324, 432, 'Gaseosa');
 
 -- --------------------------------------------------------
 
@@ -92,7 +109,7 @@ CREATE TABLE `usuarios` (
   `id_usuario` int(15) NOT NULL,
   `nombre_usuario` varchar(15) NOT NULL,
   `contraseña_usuario` varchar(255) NOT NULL,
-  `tipo_usuario` varchar(500) NOT NULL
+  `tipo_usuario` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -100,9 +117,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre_usuario`, `contraseña_usuario`, `tipo_usuario`) VALUES
-(16, 'maxi', '$2y$10$dBNS/u5vBwSAJLmVmiLUpOx8WGPklje5gkcwOWgDKNtGIMQEyH.UC', 'Administrador'),
-(20, 'roque', '$2y$10$waZWb3LhcuUm0NnTOJXenuhLrwwZhUThreFQTYkLjiMBf.a/igaqK', 'base'),
-(21, 'mono', '$2y$10$NH90Lb82f4fTBLITg0XEsOH.dfmR2wR4d09pVNlO.ok/Iv.Srdv3y', 'base');
+(16, 'maxi', '$2y$10$dBNS/u5vBwSAJLmVmiLUpOx8WGPklje5gkcwOWgDKNtGIMQEyH.UC', 1),
+(44, 'roque', '$2y$10$7AIigWhHmu0EPNu41kL31Osxyn4cvBjlVRi5yzdlQXIyxiMSLCfcW', 0);
 
 --
 -- Índices para tablas volcadas
@@ -152,31 +168,31 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id_categoria` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `imagenes`
 --
 ALTER TABLE `imagenes`
-  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_producto` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_usuario` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Restricciones para tablas volcadas

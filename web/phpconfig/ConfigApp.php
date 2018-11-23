@@ -10,8 +10,9 @@ class ConfigApp{
   public static $PARAMS = "params";
   public static $ACTIONS = [
     'home' => 'controller#iniciar',
-    ''=> 'controller#iniciar',
+        ''=> 'controller#iniciar',
         'admin'=> 'ProductosController#HomeAdmin',
+        'FiltrarPublico' =>'controller#filtroPublico',
         'agregar'=> 'ProductosController#InsertCategoria',
         'editar' => 'ProductosController#EditarCategoria',
         'guardarEditar'=> 'ProductosController#guardarEditarCategoria',
@@ -25,14 +26,14 @@ class ConfigApp{
         'login'=> 'LoginController#login',
         'logout'=> 'LoginController#logout',
         'verificarLogin' => 'LoginController#verificarLogin',
-        'CrearCuenta'=> 'controller#CrearCuenta',
-        'guardarUsuario'=>'controller#InsertarUsuario',
+        'CrearCuenta'=> 'LoginController#CrearCuenta',
+        'guardarUsuario'=>'LoginController#InsertarUsuario',
         'base'=>'ProductosController#HomeBase',
         'editarUsuario'=>'AdministradorController#EditarUsuario',
         'borrarUsuario'=>'AdministradorController#BorrarUsuario',
         'agregarImagen'=>'ProductosController#InsertarImagen',
-        'vermasAdmin'=>'AdministradorController#VerMasAdmin',
-        'vermas'=>'ProductosController#verMas'
+        'borrarImagen'=>'ProductosController#BorrarImagen',
+        'vermasAdmin'=>'ProductosController#VerMasAdmin'
 
   ];
 };

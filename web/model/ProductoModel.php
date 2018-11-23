@@ -28,21 +28,14 @@ class ProductoModel
       $sentencia->execute(array($id));
       return $sentencia->fetch(PDO::FETCH_ASSOC);
   }
-
   function InsertarProducto($producto,$precio,$unidades,$categoria){
-
     $sentencia = $this->db->prepare("INSERT INTO productos(Nombre, Precio, Unidades, nombre_categoria) VALUES(?,?,?,?)");
     $sentencia->execute(array($producto,$precio,$unidades,$categoria));
     $LastId = $this->db->lastInsertId();
     return $this->GetProducto($LastId);
   }
-  function GetImagenes($id_producto){
+  function GetImagen($id_producto){
       $sentencia = $this->db->prepare( "select * from imagenes where id_producto=?");
-      $sentencia->execute(array($id_producto));
-      return $sentencia->fetchAll(PDO::FETCH_ASSOC);
-  }
-  function GetComentarios($id_producto){
-      $sentencia = $this->db->prepare( "select * from comentarios where id_producto=?");
       $sentencia->execute(array($id_producto));
       return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
@@ -50,35 +43,34 @@ class ProductoModel
     $sentencia = $this->db->prepare("INSERT INTO imagenes(id_producto,contenido) VALUES(?,?)");
     $sentencia->execute(array($producto,$imagen));
   }
-  function InsertarComentario($producto,$comentario){
-    $sentencia = $this->db->prepare("INSERT INTO comentarios(id_producto,comentario) VALUES(?,?)");
-    $sentencia->execute(array($producto,$comentario));
+  function AgregarImagenes($imagens, $id_producto){
+      for($i = 0; $i<count($imagens); $i++){
+          $imagen = $this->subirImagen($imagens[$i]);
+          $this->asignarImagenes($id_producto,$imagen);
+        }
   }
-  function BorrarComentario($id_comentario){
-    $Comentario = $this->GetProducto($id_comentario);
-    if(isset($Comentario)){
-      $sentencia = $this->db->prepare( "delete from comentarios where id_comentarios=?");
-      $sentencia->execute(array($id_comentario));
-      return $Comentario;
-    }
+  function subirImagen($imagen){
+  $url = 'imagenes/'.uniqid().'.jpg';
+  move_uploaded_file($imagen, $url);
+  return $url;
+  }
+  function asignarImagenes($id_producto,$imagen){
+    $sentencia = $this->db->prepare("INSERT INTO imagenes(id_producto, contenido) VALUES(?,?)");
+    $sentencia->execute(array($id_producto,$imagen));
   }
   function BorrarImagen($id_imagen){
-    $Imagenes = $this->GetProducto($id_producto);
-    if(isset($Imagenes)){
       $sentencia = $this->db->prepare( "delete from imagenes where id_imagen=?");
       $sentencia->execute(array($id_imagen));
-      return $Imagenes;
     }
-  }
   function BorrarProducto($id_producto){
-    $Producto = $this->GetProducto($id_producto);
-    if(isset($Producto)){
       $sentencia = $this->db->prepare( "delete from productos where id_producto=?");
       $sentencia->execute(array($id_producto));
-      return $Producto;
-    }
   }
-
+  function GetComentarios($id_producto){
+      $sentencia = $this->db->prepare( "select * from comentarios where id_producto=?");
+      $sentencia->execute(array($id_producto));
+      return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+  }
   function GuardarProductoEditado($nombre,$precio,$unidades,$nombre_categoria,$id_producto){
     $sentencia = $this->db->prepare( "update productos set Nombre = ?, Precio = ?, Unidades = ?, nombre_categoria = ? where id_producto=?");
     $sentencia->execute(array($nombre,$precio,$unidades,$nombre_categoria,$id_producto));

@@ -1,39 +1,67 @@
 {include file="header.tpl"}
 {include file="NavBarLogeadoAdmin.tpl"}
-<div class="contenedor">
-  <form>
-    <h3></h3>
-    <div class="form-group">
-      <label for="comentario">Ingresar Comentario</label>
-      <textarea type="text" class="form-control" id="comentario" rows="3"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="valoracion">Valoracion de Producto</label>
-      <select class="form-control" id="valoracion">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
-    </div>
-  </form>
-  <h3>Ingresar Imagen</h3>
-  <li class="list-group-item">
-    <form method="post" action="{$home}/agregarImagen" >
-      <div class="form-group">
-        <label for="idImagen">Seleccionar Imagen</label>
-        <input type="file" class="form-control-file" name="idImagen" >
-        <input type="submit" name="subir" value="Subir Imagen"/>
-      </div>
-    </form>
-  </li>
-  <label for="basic-url">Ingresar URL de la Imagen</label>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-    </div>
-    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+
+<input type="hidden" id="id_producto" value="{$producto['id_producto']}">
+<input type="hidden" id="id_user" value="{$id_usuario}">
+<input type="hidden" id="admin" value="{$administrador}">
+
+<div class="contenedor Cosas" value="{$producto["id_producto"]}">
+  <div>
+    <h4>Imagenes</h4>
+    <ul class="list-group">
+      {foreach from=$Imagenes item=imagen}
+        <img src="{$imagen['contenido']}" alt="" class="img-thumbnail">
+        <a href="borrarImagen/{$imagen['id_imagen']}/{$producto['id_producto']}"><button  type="button"  class="btn btn-warning">Borrar</button></a>
+      {/foreach}
+    </ul>
   </div>
-</div>
+  <h3>Ingresar Imagen</h3>
+  <div class="contenedor ingresar">
+      <form method="post" action="agregarImagen/{$producto["id_producto"]}" enctype="multipart/form-data">
+        <div class="form-group">
+          <input required type="file" id="imagenes" name="imagenes[]">
+        </div>
+        <button type="submit" class="btn btn-primary">AGREGAR IMAGENES</button>
+      </form>
+  </div>
+  <div>
+    <form method="post">
+        <h3>Ingresar Comentario</h3>
+        <div class="form-group">
+          <label for="comentario">Ingresar Comentario</label>
+          <textarea type="text" class="form-control coment" rows="3"></textarea>
+        </div>
+        <label for="inlineRadio1">Ingrese Valoracion</label>
+        <div class="form-group">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input valoracion" type="radio" name="valoracion" value="1">
+            <label class="form-check-label" for="inlineRadio1">1</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input valoracion" type="radio" name="valoracion" value="2">
+            <label class="form-check-label" for="inlineRadio1">2</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input valoracion" type="radio" name="valoracion" value="3">
+            <label class="form-check-label" for="inlineRadio1">3</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input valoracion" type="radio" name="valoracion" value="4">
+            <label class="form-check-label" for="inlineRadio1">4</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input valoracion" type="radio" name="valoracion" value="5">
+            <label class="form-check-label" for="inlineRadio1">5</label>
+          </div>
+        </div>
+        <button type="button" class="btn btn-success js-create" name="subirConmentario" value="Enviar Comentario"/></button>
+    </form>
+
+        </div>
+    </form>
+    <div id="Comentarios-div">
+      <h1>Cargando...</h1>
+    </div>
+  </div>
+<script type="text/javascript" src="js/main.js"></script>
 {include file="footer.tpl"}

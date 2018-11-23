@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2018-11-02 15:11:36
+/* Smarty version 3.1.33, created on 2018-11-23 15:22:37
   from 'C:\xampp\htdocs\web\templates\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5bdc5b185f56a3_77865447',
+  'unifunc' => 'content_5bf80d2d8a40a5_49042895',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c800014bca7dc814d962b3520ab93bb31843a81b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web\\templates\\footer.tpl',
-      1 => 1540566805,
+      1 => 1542982955,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5bdc5b185f56a3_77865447 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5bf80d2d8a40a5_49042895 (Smarty_Internal_Template $_smarty_tpl) {
 ?><footer>
   <div class="datos">
     <ul>
@@ -41,6 +41,9 @@ function content_5bdc5b185f56a3_77865447 (Smarty_Internal_Template $_smarty_tpl)
 >
     <?php echo '<script'; ?>
  src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.js"><?php echo '</script'; ?>
 >
   </body>
 </html>
